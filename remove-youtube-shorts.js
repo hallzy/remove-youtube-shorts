@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Remove YouTube Shorts from page
 // @namespace    https://github.com/hallzy
-// @version      0.1
+// @version      0.2
 // @description  Removes YouTube Shorts Videos from your current page.
 // @author       Steven Hall
-// @match        https://www.youtube.com/*
+// @match        https://*.youtube.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=youtube.com
 // @grant        none
 // ==/UserScript==
@@ -16,6 +16,9 @@
             const containers = [
                 'ytd-grid-video-renderer',
                 'ytd-video-renderer',
+                'ytm-item-section-renderer',
+                'ytm-rich-item-renderer',
+                'ytm-rich-section-renderer',
             ];
 
             containers
