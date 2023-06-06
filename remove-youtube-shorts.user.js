@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Remove YouTube Shorts from page
 // @namespace    https://github.com/hallzy
-// @version      0.2
+// @version      0.3
 // @description  Removes YouTube Shorts Videos from your current page.
 // @author       Steven Hall
 // @match        https://*.youtube.com/*
@@ -15,12 +15,19 @@
         {
             const containers = [
                 'ytd-grid-video-renderer',
+                'ytd-item-section-renderer',
+                'ytd-rich-item-renderer',
+                'ytd-rich-section-renderer',
                 'ytd-video-renderer',
+
+                'ytm-grid-video-renderer',
                 'ytm-item-section-renderer',
                 'ytm-rich-item-renderer',
                 'ytm-rich-section-renderer',
+                'ytm-video-renderer',
             ];
 
+            const elementsToRemove = [];
             containers
                 .forEach
                 (
@@ -33,13 +40,21 @@
                                 a =>
                                 {
                                     const video = a.closest(container);
-                                    video.remove();
+                                    elementsToRemove.push(video);
                                 }
                             )
                         ;
                     }
                 )
             ;
+
+            elementsToRemove.forEach
+            (
+                element =>
+                {
+                    element.remove();
+                }
+            );
         }
 
         const observer = new MutationObserver(removeShorts);
